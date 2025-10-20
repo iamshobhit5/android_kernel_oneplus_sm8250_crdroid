@@ -844,13 +844,9 @@ static void sugov_walt_adjust(struct sugov_cpu *sg_cpu, unsigned long *util,
  */
 static inline void ignore_dl_rate_limit(struct sugov_cpu *sg_cpu, struct sugov_policy *sg_policy)
 {
-#ifdef OPLUS_FEATURE_POWER_CPUFREQ
-	if (cpu_bw_dl(cpu_rq(sg_cpu->cpu)) > sg_cpu->bw_dl) {
-		sg_policy->limits_changed = true;
-		sg_policy->after_limits_changed = true;
-	}
-#else
+
 	if (cpu_bw_dl(cpu_rq(sg_cpu->cpu)) > sg_cpu->bw_dl)
+		WRITE_ONCE(sg_policy->limits_changed, true);
 
 }
 

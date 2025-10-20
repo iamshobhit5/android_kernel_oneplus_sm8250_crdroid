@@ -530,7 +530,6 @@ struct sock {
 #endif
 	struct rcu_head		sk_rcu;
 
-
 #if IS_ENABLED(CONFIG_PROVE_LOCKING) && IS_ENABLED(CONFIG_MODULES)
 	struct module		*sk_owner;
 #endif
