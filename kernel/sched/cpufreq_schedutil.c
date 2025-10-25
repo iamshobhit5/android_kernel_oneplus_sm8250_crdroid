@@ -1792,7 +1792,6 @@ static void sugov_limits(struct cpufreq_policy *policy)
 	smp_wmb();
 
 	WRITE_ONCE(sg_policy->limits_changed, true);
-
 }
 
 static struct cpufreq_governor schedutil_gov = {
