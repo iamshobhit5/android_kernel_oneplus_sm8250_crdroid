@@ -73,7 +73,4 @@
 			PARAMS(__data, args))
 
 #endif /* TRACE_HEADER_MULTI_READ */
-<<<<<<< HEAD
 
-=======
->>>>>>> 0234b3b0919f (ANDROID: fix redefinition error for restricted vendor hooks)
