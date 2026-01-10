@@ -19,8 +19,8 @@
 #include <linux/xattr.h>
 #include <linux/iversion.h>
 #include <linux/posix_acl.h>
-#include "../internal.h"
 
+#include "../internal.h"
 
 static void fuse_advise_use_readdirplus(struct inode *dir)
 {
@@ -526,10 +526,8 @@ const struct dentry_operations fuse_root_dentry_operations = {
 #if BITS_PER_LONG < 64 || defined(CONFIG_FUSE_BPF)
 	.d_init		= fuse_dentry_init,
 	.d_release	= fuse_dentry_release,
-
 #endif
 	.d_canonical_path = fuse_dentry_canonical_path,
-
 };
 
 int fuse_valid_type(int m)
@@ -813,9 +811,6 @@ static int fuse_create_open(struct inode *dir, struct dentry *entry,
 		else if (!(ff->open_flags & FOPEN_KEEP_CACHE))
 			invalidate_inode_pages2(inode->i_mapping);
 	}
-#ifdef CONFIG_OPLUS_FEATURE_ACM
-	monitor_acm2(entry, NULL, args.in.h.opcode);
-#endif
 	return err;
 
 out_free_ff:
@@ -929,7 +924,6 @@ static int create_new_entry(struct fuse_mount *fm, struct fuse_args *args,
 		fuse_change_entry_timeout(entry, &outarg);
 	}
 	fuse_dir_changed(dir);
-
 	return 0;
 
  out_put_forget_req:
@@ -1061,7 +1055,6 @@ static int fuse_unlink(struct inode *dir, struct dentry *entry)
 	if (fuse_is_bad(dir))
 		return -EIO;
 
-
 #ifdef CONFIG_FUSE_BPF
 	{
 		struct fuse_err_ret fer;
@@ -1115,7 +1108,6 @@ static int fuse_rmdir(struct inode *dir, struct dentry *entry)
 	if (fuse_is_bad(dir))
 		return -EIO;
 
-
 #ifdef CONFIG_FUSE_BPF
 	{
 		struct fuse_err_ret fer;
@@ -1129,7 +1121,6 @@ static int fuse_rmdir(struct inode *dir, struct dentry *entry)
 			return PTR_ERR(fer.result);
 	}
 #endif
-
 
 	args.opcode = FUSE_RMDIR;
 	args.nodeid = get_node_id(dir);
@@ -1198,9 +1189,6 @@ static int fuse_rename_common(struct inode *olddir, struct dentry *oldent,
 		if (d_really_is_positive(newent))
 			fuse_invalidate_entry(newent);
 	}
-#ifdef CONFIG_OPLUS_FEATURE_ACM
-	monitor_acm2(oldent, newent, args.in.h.opcode);
-#endif
 
 	return err;
 }
