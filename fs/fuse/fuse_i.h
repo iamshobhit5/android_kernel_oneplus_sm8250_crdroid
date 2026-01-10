@@ -1326,7 +1326,7 @@ ssize_t fuse_passthrough_mmap(struct file *file, struct vm_area_struct *vma);
  * Return the number of bytes in an arguments list
  */
 unsigned int fuse_len_args(unsigned int numargs, struct fuse_arg *args);
->>>>>>> 6891a7bae99b (UPSTREAM: fuse: export fuse_len_args())
+
 
 /**
  * Get the next unique ID for a request
