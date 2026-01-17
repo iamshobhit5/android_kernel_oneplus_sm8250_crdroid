@@ -22,7 +22,6 @@
 #define DEF_KSWAPD_THREADS_PER_NODE  1
 int kswapd_threads = DEF_KSWAPD_THREADS_PER_NODE;
 int kswapd_threads_current = DEF_KSWAPD_THREADS_PER_NODE;
-int max_kswapd_threads = MAX_KSWAPD_THREADS;
 #ifdef CONFIG_KSWAPD_UNBIND_MAX_CPU
 int kswapd_unbind_cpu = -1;
 #endif
